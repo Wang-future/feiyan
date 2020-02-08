@@ -1,0 +1,53 @@
+/* pages/personal/personal.wxss */
+
+.personal-container {
+    display: flex;
+    flex-direction: row;
+    padding: 30rpx;
+}
+
+.personal-img {
+    width: 150rpx;
+    height: 150rpx;
+    border-radius: 50px;
+}
+
+.personal-name {
+    font-size: 45rpx;
+    line-height: 150rpx;
+    margin-left: 20px;
+}
+
+.personal-item {
+    display: flex;
+    flex-direction: row;
+    padding: 30rpx 30rpx;
+    border: 1px solid #eee;
+}
+
+.personal-item-img {
+    width: 90rpx;
+    height: 90rpx;
+}
+
+.personal-item-text {
+    font-size: 35rpx;
+    margin-left: 20px;
+    line-height: 90rpx; 
+}
+
+.personal-item-right {
+    width: 30rpx;
+    height: 30rpx;
+    margin: auto 0;
+    position: absolute;
+    right: 10px;
+    margin-top: 15px;
+}
+
+.personal-tip{
+    padding-top: 5px;
+    font-size: 25rpx;
+    color: #bebebe;
+    text-align: center;
+}

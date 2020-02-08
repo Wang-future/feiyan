@@ -1,0 +1,10 @@
+<!--pages/personal-info/personal-info.wxml-->
+<mine-head-img></mine-head-img>
+
+<view class='line-info'>
+    <text class='biaoqian'>个人详情信息</text>
+</view>
+<view class='line-info'>
+    <text class='biaoqian'>微信昵称</text>
+    <text class='real-info'>东东</text>
+</view>

@@ -1,0 +1,91 @@
+<view class="container">
+  <view class="news" bindtap='outbtn'>
+  
+    <view class="chat-notice" wx:if="{{userInfo}}">系统消息: 欢迎 {{ userInfo.nickName }} 来到智能问答间</view>
+  
+    <view class="historycon">
+
+      <scroll-view scroll-y="true" class="history" scroll-top="{{scrollTop}}" scroll-into-view="{{toView}}">
+      
+        <block wx:for="{{newslist}}" wx:key>
+        
+          <!--自己的消息 -->
+        
+          <view class="chat-news" wx:if="{{item.sender != 'bot'}}">
+          
+            <view style="text-align: right;padding-right: 20rpx;">
+            
+              <text class="name">{{ userInfo.nickName }}</text>
+            
+              <image class='new_img' src="{{userInfo.avatarUrl}}"></image>
+            
+            </view>
+          
+            <view class='my_right'>
+
+            
+              <view class='new_txt'>{{item.message}}</view>
+            
+          
+            <!-- <block wx:if="{{item.type=='image'}}">
+            
+              <image class="selectImg" src="{{item.images}}" data-src="{{item.images}}" lazy-load="true" bindtap="previewImg"></image>
+            
+            </block> -->
+          
+          </view>
+          </view>
+          
+          <!-- 别人的消息 -->
+          
+          <view class="chat-news" wx:else>
+          
+            <view style="text-align: left;padding-left: 20rpx;">
+            
+              <image class='new_img' src="{{item.avatarUrl? item.avatarUrl:'../../images/iais.jpg'}}"></image>
+              <text class="name">{{ item.sender }}</text>
+            
+            </view>
+          
+          <view class='you_left'>
+          
+            <view class='new_txt'>{{item.message}}</view>
+          
+            <!-- <block wx:if="{{item.type=='image'}}">
+            
+            <image class="selectImg" src="{{item.images}}" data-src="{{item.images}}" lazy-load="true" bindtap="previewImg"></image>
+            
+            </block> -->
+          
+          </view>
+          
+          </view>
+          
+        </block>
+        <view id="flag"></view> 
+      </scroll-view>
+
+    </view>
+
+  </view>
+  
+
+  <!-- 聊天输入 -->
+  <view class="message" >
+  
+    <form bindreset="cleanInput">
+
+    <view class="newcon">
+      <view>
+        <input class="mesbox" type="text" auto-focus placeholder="请输入聊天内容.." value="{{massage}}" bindinput='bindChange'></input>
+      </view>
+      <view>
+        <button class="senbut" type="warn" bindtap='send' formType="reset" size="small" button-hover="blue">发送</button>
+      </view>
+    </view>
+
+    </form>
+
+  </view>
+
+</view> <!-- 布局 -->

@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/homes/home",
+    "pages/details/detail",
+    "pages/personal/personal",
+    "pages/categorys/category",
+    "pages/single-category/single-category",
+    "pages/index/index",
+    "pages/publish/publish",
+    "pages/personal-collection/personal-collection",
+    "pages/personal-info/personal-info",
+    "pages/personal-publish/personal-publish",
+    "pages/about/about",
+    "pages/chat/chat",
+    "pages/getInfo/getInfo"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#cc3333",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "疫情小助手",
+    "backgroundColor": "#f0f0f0",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "position": "bottom",
+    "borderStyle": "black",
+    "color": "#000000",
+    "selectedColor": "#cc3333",
+    "list": [
+      {
+        "pagePath": "pages/homes/home",
+        "text": "首页",
+        "iconPath": "/images/home.png",
+        "selectedIconPath": "/images/home-select.png"
+      },
+      {
+        "pagePath": "pages/categorys/category",
+        "text": "分类",
+        "iconPath": "/images/category.png",
+        "selectedIconPath": "/images/category-select.png"
+      },
+      {
+        "pagePath": "pages/getInfo/getInfo",
+        "text": "聊天机器人",
+        "iconPath": "/images/personal.png",
+        "selectedIconPath": "/images/personal-select.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

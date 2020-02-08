@@ -1,0 +1,8 @@
+<!-- <view>
+  <button open-type="getUserInfo" class="btn1" lang="zh_CN" bindgetuserinfo="onGotUserInfo">点击进入机器人问答</button>
+</view> -->
+
+<button class='btn1' open-type='getUserInfo' bindgetuserinfo="onGotUserInfo">
+    <image class='btnImg' src='../../images/iais.jpg'></image>
+    <view>点击进入机器人问答</view>
+ </button>

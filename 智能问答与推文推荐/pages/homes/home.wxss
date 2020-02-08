@@ -1,0 +1,28 @@
+@import "../../template/news-item/news-item-template.wxss";
+
+swiper {
+    width: 100%;
+    height: 450rpx;
+}
+
+swiper image {
+    width: 100%;
+    height: 450rpx;
+}
+
+.icon-publish{
+    width: 100rpx;
+    height: 100rpx;
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    z-index: 100;
+}
+
+.info-title{
+    padding-top: 5rpx;
+    padding-bottom: 15rpx;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    color: #bebebe;
+}

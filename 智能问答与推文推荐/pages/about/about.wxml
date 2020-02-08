@@ -1,0 +1,37 @@
+<!--pages/about/about.wxml-->
+<view class='container'>
+<view class='item'>
+ <view class='title'>招聘兼职</view>
+ <text class='sub-title'>兼职·招聘·校园</text>
+ 
+</view>
+
+<view class='dashed item'></view>
+
+<view class='item'>
+<image src='../../images/地址.png' class='img'></image>
+<text class='text'>广东省111</text>
+</view>
+
+<view class='item'>
+<image src='../../images/团队.png' class='img'></image>
+<text class='text'>FFF团</text>
+</view>
+
+<view class='item'>
+<image src='../../images/电话.png' class='img'></image>
+<text class='text'>86-0511-11111111</text>
+</view>
+
+<view class='item'>
+<image src='../../images/QQ.png' class='img'></image>
+<text class='text'>11111111</text>
+</view>
+
+
+<view class='item'>
+<image src='../../images/网站.png' class='img'></image>
+<text class='text'>http://www.edu.cn/</text>
+</view>
+
+</view>

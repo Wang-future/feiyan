@@ -1,0 +1,20 @@
+/* pages/personal-info/personal-info.wxss */
+
+.line-info{
+    height: 100rpx;
+    width: 100%;
+    border: 1px solid #eee;
+}
+
+.biaoqian{
+    font-size: 45rpx;
+    line-height: 100rpx;
+    padding-left: 15rpx;
+}
+
+.real-info{
+    font-size: 45rpx;
+    float: right;
+    line-height: 100rpx;
+    padding-right: 20rpx;
+}

@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "gray-line": "../../component/gray-line/gray-line"
+    }
+}
