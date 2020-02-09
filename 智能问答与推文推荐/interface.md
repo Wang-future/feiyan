@@ -31,6 +31,7 @@ Welcome to the feiyan wiki!
     "articles":[
 	
             {
+		"id": 1,
 			
                 "title": "标题",
 				
@@ -40,12 +41,13 @@ Welcome to the feiyan wiki!
 				
                 "text":"正文",
 				
-                "eferenceLink":["url1","url2"]
+                "referenceLink":["url1","url2"]
 				
             },
 			
             {
-			
+		"id": 2,
+		
                "title": "标题2",
 			   
                 "author": "作者2",
@@ -54,7 +56,7 @@ Welcome to the feiyan wiki!
 				
                 "text":"正文",
 				
-                "eferenceLink":["url1","url2"]
+                "referenceLink":["url1","url2"]
 				
             }
 			
