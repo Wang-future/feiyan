@@ -12,9 +12,10 @@ Welcome to the feiyan wiki!
 | searchStr      | string | 用户输入的请求搜索字符串 |
 
 ### 示例
-`{/
-    "seqId":2344,/
-    "searchStr":"消毒"/
+`{  
+    "seqId":2344,
+	
+    "searchStr":"消毒"
 }`
 ### 返回参数及其说明
 |参数名          | 类型           | 说明  |
@@ -24,22 +25,40 @@ Welcome to the feiyan wiki!
 
 ### 示例
 `{
+
     "code": 0,
+	
     "articles":[
+	
             {
+			
                 "title": "标题",
+				
                 "author": "作者",
+				
                 "date":"日期",
+				
                 "text":"正文",
+				
                 "eferenceLink":["url1","url2"]
+				
             },
+			
             {
+			
                "title": "标题2",
+			   
                 "author": "作者2",
+				
                 "date":"日期",
+				
                 "text":"正文",
+				
                 "eferenceLink":["url1","url2"]
+				
             }
+			
          ]
+		 
 }`
 
