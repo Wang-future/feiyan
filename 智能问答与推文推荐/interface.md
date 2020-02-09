@@ -36,6 +36,8 @@ Welcome to the feiyan wiki!
                 "title": "标题",
 				
                 "author": "作者",
+		
+		 "imgUrl": "http://",
 				
                 "date":"日期",
 				
