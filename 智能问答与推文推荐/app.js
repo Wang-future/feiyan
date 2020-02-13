@@ -11,7 +11,7 @@ App({
         var app = getApp()
         console.log('login:code', res.code)          //发送请求          
         wx.request({            
-          url: 'http://127.0.0.1:5015/getOpenid', //接口地址            
+          url: 'http://47.112.189.78:5015/getOpenid', //接口地址            
           data: {'code': res.code},            
           header: {'content-type': 'application/json'},            
         success: function (res) {              
@@ -69,7 +69,7 @@ App({
   globalData: {
     userInfo: null,
     trueIp: '47.112.189.78',
-    backIp: '127.0.0.1',
+    backIp: '47.112.189.78',
     backPort: 5015,
     openid: '',
     unionid: '',
