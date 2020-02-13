@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/homes/home",
-    "pages/details/detail",
+    "pages/details/details",
     "pages/personal/personal",
     "pages/categorys/category",
     "pages/single-category/single-category",
@@ -12,7 +12,9 @@
     "pages/personal-publish/personal-publish",
     "pages/about/about",
     "pages/chat/chat",
-    "pages/getInfo/getInfo"
+    "pages/getInfo/getInfo",
+    "pages/search/search",
+    "pages/addArt/addArt"
   ],
   "window": {
     "navigationBarBackgroundColor": "#cc3333",
@@ -34,8 +36,8 @@
         "selectedIconPath": "/images/home-select.png"
       },
       {
-        "pagePath": "pages/categorys/category",
-        "text": "分类",
+        "pagePath": "pages/search/search",
+        "text": "谣言查询",
         "iconPath": "/images/category.png",
         "selectedIconPath": "/images/category-select.png"
       },

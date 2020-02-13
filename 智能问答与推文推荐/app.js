@@ -7,7 +7,43 @@ App({
 
     // 登录
     wx.login({
+      success: function (res) {
+        var app = getApp()
+        console.log('login:code', res.code)          //发送请求          
+        wx.request({            
+          url: 'http://127.0.0.1:5015/getOpenid', //接口地址            
+          data: {'code': res.code},            
+          header: {'content-type': 'application/json'},            
+        success: function (res) {              
+          console.log("record  成功", res.data)              
+          if (res.error) { //发生错误
+
+            console.log("获取openid错误：", res.msg);  
+            log.error("错误：", res.msg);
+            wx.showModal({
+              title: '错误提示',
+              content: '服务器发生错误，无法获取相关信息',
+              showCancel: false,
+              success(res) {
+                if (res.confirm) {
+                }
+              }
+            })
+          }
+          else { //返回成功 
+            console.log("get openid:" + res.data )              
+            app.globalData.openid = res.data
+            console.log(app.globalData.openid)
+          }            
+        },            
+        fail: function (err) 
+        {              
+          console.log("获取openid  失败", err);            
+        }          
+      })
+      }
     })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -26,16 +62,21 @@ App({
             }
           })
         }
+
       }
     })
   },
   globalData: {
     userInfo: null,
-    backIp: '122.51.236.116',
-    usermgrPort: 8080,
-    bizmgrPort: 8081,
-    cardmgrPort: 8082,
-    openid: 'usr1',
-    unionid: '123',
+    trueIp: '47.112.189.78',
+    backIp: '127.0.0.1',
+    backPort: 5015,
+    openid: '',
+    unionid: '',
+    get_articles_url:'http://47.112.189.78:5015/getAllArticles',
+    search_url: 'http://47.112.189.78:5015/search',
+    rotBackIp:'47.112.189.78',
+    rotBackPort:'5000',
+    showJsonStr:''
   }
 })

@@ -130,7 +130,7 @@ margin-right: 10rpx;
  
 .new_txt {
  
-max-width: 300rpx;
+max-width: 500rpx;
  
 display: inline-block;
  

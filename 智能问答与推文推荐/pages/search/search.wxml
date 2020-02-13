@@ -1,0 +1,18 @@
+<import src="../../template/news-item/news-item-template.wxml" />
+<!--  搜索框  -->
+<view class='search'>
+    <input type='text' placeholder='输入你的疑问' confirm-type='search' value="{{inputValue}}" bindinput='inputBind' bindconfirm='query'></input>
+    <image class="" src='../../images/search.png' bindtap='query'></image>
+</view>
+
+<view class='info-title'>
+    <text decode="{{true}}">—&nbsp;&nbsp;&nbsp;&nbsp;搜索结果&nbsp;&nbsp;&nbsp;&nbsp;—</text>
+</view>
+
+<block wx:for="{{articles}}" wx:for-item="item" wx:key="{{index}}">
+    <view bindtap='onPostDetail' data-news-id="{{item.id}}">
+        <template is="newsItem" data="{{...item}}" />
+    </view>
+</block>
+
+

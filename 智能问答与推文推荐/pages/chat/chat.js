@@ -16,7 +16,7 @@ Page({
 
   data: {
 
-    newslist: [{ message: "hello!", sender: 'bot' }, { sender: 'usr',message: "hello!" }],
+    newslist: [],
 
     userInfo: {},
 
@@ -99,7 +99,7 @@ Page({
                         fail: res => {
                           console.log(res)
                           wx.reLaunch({     //跳转至指定页面并关闭其他打开的所有页面（这个最好用在返回至首页的的时候）
-                            url: '/pages/index/index'
+                            url: '/pages/homes/home'
                           })
                         }
                       })
@@ -108,7 +108,7 @@ Page({
                 },
                 fail: res => {
                   wx.reLaunch({     //跳转至指定页面并关闭其他打开的所有页面（这个最好用在返回至首页的的时候）
-                    url: '/pages/index/index'
+                    url: '/pages/homes/home'
                   })
                 }
               })
@@ -129,7 +129,8 @@ Page({
       log.error("logic error!")
     }
 
-    var m_url = 'http://39.108.53.240:6005/conversations/' + app.globalData.openid
+    console.log("in tes sft")
+    var m_url ='http://' + app.globalData.rotBackIp + ':' + app.globalData.rotBackPort + '/conversations/' + app.globalData.openid
     // 获取历史信息
     wx.request({
       url: m_url, //仅为示例，并非真实的接口地址
@@ -152,17 +153,70 @@ Page({
           var data = res.data.data
           console.log(data)
           console.log(res.data.data)
+          var list = []
           var conversationList = res.data.data.conversation
-          console.log(conversationList)
-          console.log(that.data.newslist)
+          var messageStr = ''
+          // 消息数组
+          for (var index = 0; index < conversationList.length; ++index) {
+            var get_str = conversationList[index];
+            console.log("get_str:" + get_str)
+
+            // 转换为json
+            var strJson = get_str['message']
+            if (strJson['type'] == 'other') {
+              console.log("in texttype")
+              var ret_str = '{ "message": "' + strJson['text'] + '", "sender": "' + 'bot' + '" }'
+              ret_str = ret_str.replace(/\n/g, "\\n");
+              list.push(JSON.parse(ret_str))
+            }
+            else {
+                var noticeList = strJson['notice']
+                var rumorList = strJson['rumor']
+                if (noticeList.length > 0) {
+                  messageStr += '下面展示一些新闻通告:' + '\n' 
+                  var ret_str = '{ "message": "' + messageStr + '", "sender": "' + 'bot' + '" }'
+                  // ret_str = ret_str.replace(/\n/g, "\\n");
+                  // list.push(JSON.parse(ret_str))
+                
+                  for (var x = 0; x < noticeList.length; ++x) {
+                    var tempJson = noticeList[x]
+                    var tempStr = '[标题]:' + tempJson.title + '\n' + '[发布者]:' + tempJson.source + '\n' + '[详情链接]:' + tempJson.sourceUrl + '\n' 
+                    messageStr +=tempStr
+                    // var ret_str = '{ "message": "' + tempStr + '", "sender": "' + 'bot' + '" }'
+                    // ret_str = ret_str.replace(/\n/g, "\\n");
+                    // list.push(JSON.parse(ret_str))
+                  }
+                }
+                if (rumorList.length > 0) {
+                  messageStr += '下面展示一些谣言:' + '\n' 
+                  // var ret_str = '{ "message": "' + messageStr + '", "sender": "' + 'bot' + '" }'
+                  // ret_str = ret_str.replace(/\n/g, "\\n");
+                  // list.push(JSON.parse(ret_str))
+                
+                  for (var x = 0; x < rumorList.length; ++x) {
+                    var tempJson = rumorList[x]
+                    var tempStr = '[标题]:' + tempJson.title + '\n' + '[发布者]:' + tempJson.source + '\n' + '[谣传内容]:' + tempJson.body + '\n' + '[结论]:' + tempJson.mainSummary + '\n' 
+                    messageStr += tempStr
+                    // var ret_str = '{ "message": "' + tempStr + '", "sender": "' + 'bot' + '" }'
+                    // ret_str = ret_str.replace(/\n/g, "\\n");
+                  
+                  }
+                }
+              messageStr = messageStr.replace(/\n/g, "\\n");
+              console.log(messageStr)
+              var ret_str = '{ "message": "' + messageStr + '", "sender": "' + 'bot' + '" }'
+              ret_str = ret_str.replace(/\n/g, "\\n");
+              list.push(JSON.parse(ret_str))
+             }
+
+            }
+
           that.setData({
-            newslist: conversationList,
+            newslist: list,
              toView: "flag"
           })
-          
-         console.log("lisg:")
-          console.log(conversationList)
           console.log(that.data.newslist)
+       
         }
        
       },
@@ -186,28 +240,6 @@ Page({
         })
       }
     })
-    // 调用信息
-
-    //调通接口
-
-    // wang 此段需要恢复
-    // websocket.connect(this.data.userInfo, function (res) {
-
-    //   // console.log(JSON.parse(res.data))
-
-    //   var list = []
-
-    //   list = that.data.newslist
-
-    //   list.push(JSON.parse(res.data))
-
-    //   that.setData({
-
-    //     newslist: list
-
-    //   })
-
-    // })
 
   },
 
@@ -248,7 +280,8 @@ Page({
       })
 
     }
-    else {
+    else
+    {
 
       setTimeout(function () {
 
@@ -263,8 +296,9 @@ Page({
       var list = this.data.newslist
       list.push(JSON.parse(send_str))
 
-      this.setData({
-        newslist: list
+      flag.setData({
+        newslist: list,
+        toView: "flag"
       })
 
       console.log(" send message:" + this.data.message)
@@ -272,7 +306,7 @@ Page({
      // websocket.send(send_str)
 
       wx.request({
-        url: 'http://39.108.53.240:6005/send',
+        url: 'http://' + app.globalData.rotBackIp + ':' + app.globalData.rotBackPort + '/send',
         data: {
           sender: app.globalData.openid,
           message: this.data.message,
@@ -286,23 +320,74 @@ Page({
           console.log(res.data)
           var ret_code = res.data.code
           if (ret_code == 0) {
-            // 消息数组
             var data = res.data.data
-            var messLists = data.messages
+            console.log(data)
+            console.log(res.data.data)
             var list = flag.data.newslist
-            for(var index = 0; index < messLists.length; ++index)
+            var conversationList = res.data.data.messages
+            var messageStr = ''
+            // 消息数组
+            for (var index = 0; index < conversationList.length; ++index) 
             {
-              var ret_str = '{ "message": "' + messLists[index] + '", "sender": "' + 'bot' + '" }'
-              list.push(JSON.parse(ret_str))
+              var get_str = conversationList[index];
+              console.log("get_str:" + get_str)
+
+              // 转换为json
+              var strJson = get_str
+              if (strJson['type'] == 'other') {
+                console.log("in texttype")
+                var ret_str = '{ "message": "' + strJson['text'] + '", "sender": "' + 'bot' + '" }'
+                ret_str = ret_str.replace(/\n/g, "\\n");
+                list.push(JSON.parse(ret_str))
+              }
+              else 
+              {
+                console.log("in notice rumor")
+                var noticeList = strJson['notice']
+                var rumorList = strJson['rumor']
+                if (noticeList.length > 0) 
+                {
+                  messageStr += '下面展示一些新闻通告:' + '\n'
+                  var ret_str = '{ "message": "' + messageStr + '", "sender": "' + 'bot' + '" }'
+                  // ret_str = ret_str.replace(/\n/g, "\\n");
+                  // list.push(JSON.parse(ret_str))
+
+                  for (var x = 0; x < noticeList.length; ++x) {
+                    var tempJson = noticeList[x]
+                    var tempStr = '[标题]:' + tempJson.title + '\n' + '[发布者]:' + tempJson.source + '\n' + '[详情链接]:' + tempJson.sourceUrl + '\n'
+                    messageStr += tempStr
+                    // var ret_str = '{ "message": "' + tempStr + '", "sender": "' + 'bot' + '" }'
+                    // ret_str = ret_str.replace(/\n/g, "\\n");
+                    // list.push(JSON.parse(ret_str))
+                  }
+                }
+
+                if (rumorList.length > 0) 
+                {
+                  messageStr += '下面展示一些谣言:' + '\n'
+                  for (var x = 0; x < rumorList.length; ++x) {
+                    var tempJson = rumorList[x]
+                    var tempStr = '[标题]:' + tempJson.title + '\n' + '[发布者]:' + tempJson.source + '\n' + '[谣传内容]:' + tempJson.body + '\n' + '[结论]:' + tempJson.mainSummary + '\n'
+                    messageStr += tempStr
+                    // var ret_str = '{ "message": "' + tempStr + '", "sender": "' + 'bot' + '" }'
+                    // ret_str = ret_str.replace(/\n/g, "\\n");
+
+                  }
+                }
+                messageStr = messageStr.replace(/\n/g, "\\n");
+                console.log(messageStr)
+                var ret_str = '{ "message": "' + messageStr + '", "sender": "' + 'bot' + '" }'
+                ret_str = ret_str.replace(/\n/g, "\\n");
+                list.push(JSON.parse(ret_str))
+              }
+
             }
-            flag.setData({
-              newslist: list
-            })
-            flag.setData({
 
+            flag.setData({
+              newslist: list,
               toView: "flag"
-
             })
+
           }
           else {
             log.error("发生未知错误，用户发送消息，机器人返回code为1.")
@@ -311,7 +396,9 @@ Page({
               duration:3000,
             })
           }
-
+          flag.setData({
+            toView: "flag"
+          })
         },
         fail(res) {
           wx.showModal({
@@ -331,17 +418,12 @@ Page({
         }
       })
 
-
       // console.log("in test clear iput")
-      this.setData({
-
+      flag.setData({
         toView: "flag"
-
       })
 
-     //this.bottom()
-
-  }
+    }
 
   },
 

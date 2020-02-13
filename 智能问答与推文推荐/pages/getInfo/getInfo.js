@@ -1,4 +1,5 @@
 var types = ['default', 'primary', 'warn']
+var app = getApp()
 var pageObject = {
   data: {
     defaultSize: 'default',
@@ -23,8 +24,44 @@ var pageObject = {
       loading: !this.data.loading
     })
   },
+  onLoad:function(e){
+    if (!app.globalData.openid) {
+      console.log("in test")
+      wx.showModal({
+        title: '错误提示',
+        content: '服务器未响应,暂时无法使用机器人聊天',
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            wx.reLaunch({     //跳转至指定页面并关闭其他打开的所有页面（这个最好用在返回至首页的的时候）
+              url: '/pages/homes/home'
+            })
+            log.error('没有获取到用户openid！')
+          }
+        }
+      })
+    }
+  },
   onGotUserInfo: function (e) {
-    console.log("in ")
+    if (!app.globalData.openid) {
+      console.log("in test")
+      wx.showModal({
+        title: '错误提示',
+        content: '服务器未响应,暂时无法使用机器人聊天',
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            wx.reLaunch({     //跳转至指定页面并关闭其他打开的所有页面（这个最好用在返回至首页的的时候）
+              url: '/pages/homes/home'
+            })
+            log.error('没有获取到用户openid！')
+          }
+        }
+      })
+      wx.showToast({
+        title: '服务器未响应,暂时无法使用机器人聊天',
+      })
+    }
     if (!e.detail.userInfo) {
       //用户按了拒绝按钮
       wx.showModal({

@@ -1,10 +1,13 @@
 <import src="../../template/news-item/news-item-template.wxml" />
-
+<!-- <view class='search'>
+    <input type='text' placeholder='输入关键词搜索试试' confirm-type='search' bindfocus="searchClick"></input>
+    <image class="" src='../../images/search.png' bindtap='query'></image>
+</view> -->
 <view>
     <swiper indicator-dots="true" autoplay="true" circular="true">
         <block wx:for="{{imagesPath}}" wx:for-item="item" wx:key="{{index}}">
             <swiper-item>
-                <image src="{{item.header_image}}" data-news-id="{{item.header_id}}" catchtap='onPostDetail' ></image>
+                <image src="{{item.header_image}}" data-news-id="{{item.header_id}}" ></image>
             </swiper-item>
         </block>
     </swiper>
@@ -15,10 +18,10 @@
 <gray-line />
 
 <view class='info-title'>
-    <text decode="{{true}}">—&nbsp;&nbsp;&nbsp;&nbsp;招聘信息&nbsp;&nbsp;&nbsp;&nbsp;—</text>
+    <text decode="{{true}}">—&nbsp;&nbsp;&nbsp;&nbsp;热门分享&nbsp;&nbsp;&nbsp;&nbsp;—</text>
 </view>
 
-<block wx:for="{{content}}" wx:for-item="item" wx:key="{{index}}">
+<block wx:for="{{articles}}" wx:for-item="item" wx:key="{{index}}">
     <view bindtap='onPostDetail' data-news-id="{{item.id}}">
         <template is="newsItem" data="{{...item}}" />
     </view>

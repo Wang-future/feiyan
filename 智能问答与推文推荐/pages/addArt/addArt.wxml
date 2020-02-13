@@ -1,0 +1,44 @@
+<view class="main">
+
+    <view  class="com-border d-row justify-content c-border-1" >
+        <text class="ft26 c-name">标题</text>
+        <input class="c-input-style"  type="text" value="" placeholder="请输入" placeholder-class="input-placeholder" bindinput ="titleInput" />
+    </view>
+
+    <view  class="com-border d-row justify-content c-border-1">
+        <text class="ft26 c-name">作者</text>
+        <input class="c-input-style"  type="text" value="" placeholder="请输入" placeholder-class="input-placeholder" bindinput ="authorInput" />
+    </view>
+
+    <view  class="com-border d-row justify-content c-border-1">
+        <text class="ft26 c-name">引用</text>
+        <input class="c-input-style"  type="text" value="" placeholder="请输入(多个引用使用英文逗号分隔)" placeholder-class="input-placeholder" bindinput ="refInput"/>
+    </view>
+
+    <view  class="com-text d-row justify-content c-border-1">
+        <textarea value="" placeholder="请输入正文" placeholder-class="input-placeholder" bindinput ="textInput" />
+    </view>
+  
+  <view  class="com-border d-row justify-content c-border-1">
+        <text class="ft26 c-name">邀请码</text>
+        <input class="c-input-style"  type="text" value="" placeholder="没有邀请码无发布文章权限" placeholder-class="input-placeholder" bindinput ="invcodeInput"/>
+    </view>
+ <view  class="com-border d-row c-input-picker c-border-1">
+        <text class="ft26 c-name ">发布为</text>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{choices}}">
+          <text>{{choices[index]}}</text>
+        </picker>
+  </view>
+  <!-- <view  class="com-border d-row justify-content c-border-1">
+    <text class="ft26 c-name">发布为</text>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{choices}}">
+      <view class="picker">{{choices[index]}}</view>
+    </picker>
+  </view> -->
+
+    <view class="photo-btn-model">
+        <button bindtap="goToFirm"  class="submit-btn">发布</button>
+    </view>
+
+
+</view>
