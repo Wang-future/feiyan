@@ -28,8 +28,8 @@
 
 .btnImg {
   margin-right: 8rpx;
-  width: 46rpx;
-  height: 46rpx;
+  width: 66rpx;
+  height: 66rpx;
 }
 
 .btn1::after {

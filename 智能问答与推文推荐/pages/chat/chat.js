@@ -129,7 +129,6 @@ Page({
       log.error("logic error!")
     }
 
-    console.log("in tes sft")
     var m_url ='http://' + app.globalData.rotBackIp + ':' + app.globalData.rotBackPort + '/conversations/' + app.globalData.openid
     // 获取历史信息
     wx.request({
@@ -165,7 +164,7 @@ Page({
             var strJson = get_str['message']
             if (strJson['type'] == 'other') {
               console.log("in texttype")
-              var ret_str = '{ "message": "' + strJson['text'] + '", "sender": "' + 'bot' + '" }'
+              var ret_str = '{ "message": "' + strJson['text'] + '", "sender": "' + get_str['sender'] + '" }'
               ret_str = ret_str.replace(/\n/g, "\\n");
               list.push(JSON.parse(ret_str))
             }
@@ -174,7 +173,7 @@ Page({
                 var rumorList = strJson['rumor']
                 if (noticeList.length > 0) {
                   messageStr += '下面展示一些新闻通告:' + '\n' 
-                  var ret_str = '{ "message": "' + messageStr + '", "sender": "' + 'bot' + '" }'
+                  var ret_str = '{ "message": "' + messageStr + '", "sender": "' + get_str['sender'] + '" }'
                   // ret_str = ret_str.replace(/\n/g, "\\n");
                   // list.push(JSON.parse(ret_str))
                 
@@ -204,7 +203,7 @@ Page({
                 }
               messageStr = messageStr.replace(/\n/g, "\\n");
               console.log(messageStr)
-              var ret_str = '{ "message": "' + messageStr + '", "sender": "' + 'bot' + '" }'
+              var ret_str = '{ "message": "' + messageStr + '", "sender": "' + get_str['sender'] + '" }'
               ret_str = ret_str.replace(/\n/g, "\\n");
               list.push(JSON.parse(ret_str))
              }
@@ -292,7 +291,7 @@ Page({
         })
 
       }, 500)
-      var send_str = '{ "message": "' + this.data.message + '", "sender": "' +'usr'+ '" }'
+      var send_str = '{ "message": "' + this.data.message + '", "sender": "' +'user'+ '" }'
       var list = this.data.newslist
       list.push(JSON.parse(send_str))
 

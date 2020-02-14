@@ -22,18 +22,13 @@
             </view>
           
             <view class='my_right'>
-
-            
               <view class='new_txt'>{{item.message}}</view>
-            
-          
             <!-- <block wx:if="{{item.type=='image'}}">
             
               <image class="selectImg" src="{{item.images}}" data-src="{{item.images}}" lazy-load="true" bindtap="previewImg"></image>
             
             </block> -->
-          
-          </view>
+            </view>
           </view>
           
           <!-- 别人的消息 -->
@@ -47,17 +42,11 @@
             
             </view>
           
-          <view class='you_left'>
-          
-            <view class='new_txt'>{{item.message}}</view>
-          
-            <!-- <block wx:if="{{item.type=='image'}}">
+            <view class='you_left'>
             
-            <image class="selectImg" src="{{item.images}}" data-src="{{item.images}}" lazy-load="true" bindtap="previewImg"></image>
+              <view class='new_txt'>{{item.message}}</view>
             
-            </block> -->
-          
-          </view>
+            </view>
           
           </view>
           

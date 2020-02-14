@@ -7,7 +7,7 @@
         </view>
         <image class='news-image' src='{{imgUrl}}'></image>
         <text class='news-content'>{{text}}</text>
-        <text class='news-content' class='ref'>引用</text>
+        <text class='news-content' class='ref' wx:if="{{referenceLink.length > 0}}">引用</text>
         <block wx:for="{{referenceLink}}" wx:for-item="item" wx:key="{{index}}">
           <text class='news-content' class='ref'>{{item}}</text>
         </block>

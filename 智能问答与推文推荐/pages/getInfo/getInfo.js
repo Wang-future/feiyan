@@ -1,5 +1,6 @@
 var types = ['default', 'primary', 'warn']
 var app = getApp()
+var log = require('../../utils/log.js');
 var pageObject = {
   data: {
     defaultSize: 'default',

@@ -12,7 +12,8 @@ Page({
     referenceLink:[],
     invcode:'',
     choices:['文章','通知'],
-    index:0
+    index:0,
+    text:''
   },
 
   /**
@@ -95,7 +96,7 @@ Page({
     var arr = e.detail.value.split(',');
     console.log(arr)
     this.setData({
-      ref: arr
+      referenceLink: arr
     })
   },
 
@@ -112,13 +113,13 @@ Page({
     })
   },
 
-  goToFirm:function()
+  goToFirm:function(e)
   {
     var that = this
     // title
     if (this.data.title.trim() == "") 
     {
-      inputValid =false
+     
       wx.showToast({
         title: '标题不能为空哦',
         icon: "none",
@@ -128,7 +129,7 @@ Page({
     else 
     {
       if (this.data.text.trim() == "") {
-        inputValid = false
+
         wx.showToast({
           title: '正文不能为空哦',
           icon: "none",
@@ -137,7 +138,7 @@ Page({
       }
       else {
         if (this.data.invcode.trim() == "") {
-          inputValid = false
+          
           wx.showToast({
             title: '邀请码不能为空哦',
             icon: "none",
@@ -146,7 +147,7 @@ Page({
         }
         else {
           // 合法的输入了
-          console.log("title:" + that.data.title)
+  
           var article ={}
           article['title'] = that.data.title
           article['author'] = that.data.author
