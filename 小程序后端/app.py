@@ -283,4 +283,4 @@ if __name__ == '__main__':
     # Articles.append(jsonstr)
     # addArticles(Articles)
     #print(loadArticles())
-    app.run(host='0.0.0.0', port=5015)
+    app.run(host='0.0.0.0', port=5015, ssl_context=('./zhengshu/secret.pem', './zhengshu/secret.key'))
