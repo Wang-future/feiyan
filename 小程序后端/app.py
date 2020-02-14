@@ -54,7 +54,7 @@ def get_dataset_for_db(idlist):
             dict['text'] = ''
 
         referenceLink = []
-        if 'sourceUrl' in item:
+        if ('sourceUrl' in item) and item['sourceUrl'] != "":
             referenceLink.append(item['sourceUrl'])
         dict['referenceLink'] = referenceLink
 
